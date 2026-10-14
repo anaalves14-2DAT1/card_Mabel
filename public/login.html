@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+
+<body>
+     <nav class="menu">
+        <a class="link" href="index.html">home</a>
+        <a class="link" href="galeria.html">galeria</a>
+        <a class="link" href="chat.html">chat Mabel</a>
+        <a class="link" href="cadastro.html">cadastro</a>
+        <a class="link" href="login.html">login</a>
+    </nav>
+
+    <h2>Login</h2>
+
+    <label for="loginEmail">E-mail</label><br>
+    <input type="email" id="loginEmail" placeholder="Digite seu e-mail"><br><br>
+
+    <label for="loginSenha">Senha</label><br>
+    <input type="password" id="loginSenha" placeholder="Digite sua senha"><br><br>
+
+    <button id="btnLogin">Enviar</button>
+    <div id="mensagemLogin"></div>
+
+    <script>
+
+        const btnLogin = document.querySelector('#btnLogin')
+        const mensagemlogin = document.querySelector('#mensagemLogin')
+
+        btnLogin.addEventListener('click', async () => {
+
+            const emailEntrada = document.querySelector('#loginEmail');
+            const senhaEntrada = document.querySelector('#loginSenha');
+
+            const email = emailEntrada.value;
+            const senha = senhaEntrada.value;
+
+            if (!email || !senha) {
+                mensagemLogin.innerText = 'Preencha todos os campos antes de enviar!';
+                mensagemLogin.style.color = 'red';
+                return;
+            }
+
+            try {
+                const respostaBe = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        senha: senha
+                    })
+                });
+
+                const dados = await respostaBe.json();
+
+                if (!respostaBe.ok) {
+                    mensagemLogin.innerText = `${dados.erro}`;
+                    mensagemLogin.style.color = 'red';
+                    return;
+                }
+
+                localStorage,setItem('usuarioLogado', dados.usuario);
+
+                mensagemLogin.innerText = `${dados.mensagem}: ${dados.usuario} entrando no chat`;
+                mensagemLogin.style.color = 'green';
+
+                setTimeout(() => {
+                    window.location.href = 'chat.html';
+                }, 1000);
+
+                //emailEntrada.value = '';
+                //senhaEntrada.value = '';
+
+            } catch (erro) {
+                console.error('Erro na requisição:', erro);
+                mensagemLogin.innerText = 'Erro ao conectar com o servidor!!';
+                mensagemLogin.style.color = 'red';
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

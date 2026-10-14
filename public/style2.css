@@ -1,0 +1,393 @@
+/*==================================home===================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Creepster&family=Mystery+Quest&family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+
+:root {
+    --escuro-estilo-cinema: #0b0b0d; 
+    --ouro-bill: #ffcc00;
+    --verde-floresta: #234132;    
+    --fundo-floresta: #1a110b;    
+    --fundo-diario: #1f130f;     
+    --pergaminho: #f7eed6;       
+    --azul-portal: #9c27b0;      
+    --rosado-: #fe5f55;        
+    --vermelho-diario: #e61b00;   
+}
+
+
+body {
+    background-color: var(--escuro-estilo-cinema);
+    color: var(--pergaminho);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========================================= MENU NAVEGAÇÃO ================================================= */
+
+.menu {
+    position: fixed; 
+    top: 0;
+    left: 0;         
+    width: 100%;     
+    padding: 20px;
+    background-color: rgba(11, 17, 14, 0.95);  
+    text-align: center;
+    border-bottom: 2px solid var(--fundo-diario);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10; 
+}
+
+.link {
+    text-decoration: none; 
+    font-family: 'Mystery Quest', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin: 0 20px;
+    color: var(--pergaminho);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.link:hover, .link.ativo {
+    color: var(--vermelho-diario);
+    text-shadow: 0 0 10px var(--azul-portal);
+}
+
+
+.hero-deadpool {
+    display: flex;              
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;          
+    position: relative;          
+    min-height: 85vh;
+    padding: 60px 40px;
+    text-align: center;
+    box-sizing: border-box;
+    background: var(--fundo-diario); 
+    margin-top: 80px; 
+    filter: drop-shadow(0px 10px 10px var(--vermelho-diario)); 
+    overflow: hidden;
+}
+
+.esquerdo {
+    width: 35%;
+    text-align: center;
+    height: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-titulo {
+    font-family: 'Bangers', cursive, sans-serif;
+    font-size: 5.5rem;
+    color: var(--vermelho-diario);
+    margin: 0;
+    letter-spacing: 10px;
+    text-shadow: 4px 4px 0px var(--escuro-estilo-cinema);
+}
+
+.hero-subtitulo {
+    color: var(--pergaminho);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 15px 0 30px 0;
+}
+
+.deadpool-front {
+    position: absolute;
+    bottom: 0;      
+    left: 50%;          
+    transform: translateX(-50%); 
+    height: 100%; 
+    max-height: 400px; 
+    width: auto; 
+    object-fit: contain;     
+    z-index: 1;         
+    filter: drop-shadow(0px 20px 10px var(--escuro-estilo-cinema)); 
+}
+
+.direito {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    text-align: center;
+    height: 400px;
+    padding: 10px;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    z-index: 2;
+}
+
+.bloco-balao {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: var(--pergaminho);
+    color: var(--escuro-estilo-cinema);
+    padding: 18px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    max-width: 350px;
+    font-size: 1.15rem;
+    border: 4px solid var(--escuro-estilo-cinema);
+    box-shadow: 6px 6px 10px var(--vermelho-diario);
+    transform: rotate(-4deg);
+    transition: all 0.3s ease;
+}
+
+.btn-principal {
+    background: var(--vermelho-diario);
+    color: var(--pergaminho);
+    font-family: 'Bangers', cursive, sans-serif;
+    font-size: 1.4rem;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px var(--escuro-estilo-cinema);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 250px;
+    display: inline-block;
+}
+
+.btn-principal:hover {
+    transform: translateY(-4px);
+    background-color: var(--rosado-); 
+}
+
+.btn-principal:active {
+    transform: translateY(1px) scale(0.95);
+}
+
+/* ========================================= SEÇÃO PERFIL ================================================= */
+
+.container-principal {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.secao-perfil {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 60px;
+    align-items: center;
+    background: var(--fundo-floresta);
+    padding: 40px;
+    border-radius: 24px;
+}
+
+.perfil-moldura {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 4px solid var(--vermelho-diario);
+    box-shadow: 0 0 30px var(--escuro-estilo-cinema);
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil-foto {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.perfil-moldura:hover .perfil-foto {
+    transform: scale(1.08) rotate(3deg); 
+    filter: brightness(1.15) contrast(1.05);
+}
+
+.perfil-moldura:hover {
+    border-color: var(--ouro-bill);
+    box-shadow: 0 0 40px var(--ouro-bill);
+}
+
+.perfil-texto h2 {
+    font-family: 'Bangers', cursive, sans-serif;
+    font-size: 2.8rem;
+    color: var(--vermelho-diario);
+    margin-top: 0;
+    letter-spacing: 2px;
+}
+
+.perfil-texto p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--pergaminho);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--pergaminho);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+/* ++++++++++++++++++++++++ CHAT DO PERSONAGEM ++++++++++++++++++++++++++++++++++++ */
+
+:root {
+    --escuro-estilo-cinema: #0b0b0d; 
+    --ouro-bill: #ffcc00;
+    --verde-floresta: #234132;    
+    --fundo-floresta: #1a110b;    
+    --fundo-diario: #1f130f;     
+    --pergaminho: #f7eed6;       
+    --azul-portal: #9c27b0;      
+    --rosado-: #fe5f55;        
+    --vermelho-diario: #e65100;  
+}
+
+
+body {
+    background-color: var(--escuro-estilo-cinema);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========================================= MENU ================================================= */
+.menu {
+    position: fixed; 
+    top: 0;
+    left: 0;         
+    width: 100%;     
+    padding: 20px;
+    background-color: rgba(11, 17, 14, 0.95);  
+    text-align: center;
+    border-bottom: 3px solid var(--vermelho-diario);
+    z-index: 999;
+}
+
+.link {
+    text-decoration: none; 
+    font-family: 'Mystery Quest', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin: 0 20px;
+    color: var(--pergaminho);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.link:hover {
+    color: var(--azul-portal);
+    text-shadow: 0 0 10px var(--azul-portal);
+}
+
+/* ========================================= CHAT ================================================= */
+
+
+.container-chat {
+    max-width: 550px;
+    margin: 110px auto 20px auto; 
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fundo-floresta); 
+    border-radius: 16px;
+    border: 4px solid var(--ouro-bill); 
+    box-shadow: 0 8px 32px rgba(255, 204, 0, 0.15);
+    overflow: hidden;
+    padding: 20px; 
+    gap: 20px;
+}
+
+.janela-mensagens {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    
+}
+
+.mensagem {
+    max-width: 75%;
+    padding: 14px 18px; 
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+.mensagem.mabel {
+    background-color: var(--rosado-);
+    color: var(--pergaminho);
+    align-self: flex-start;   
+    border: 2px solid var(--pergaminho);
+}
+
+.mensagem.usuario {
+    background-color: var(--verde-floresta);
+    color: var(--pergaminho);
+    align-self: flex-end; 
+    border: 2px solid var(--pergaminho);
+}
+
+.formulario-envio {
+    display: flex;
+    flex-direction: row; 
+    padding: 12px;
+    background-color: var(--fundo-diario);
+    gap: 12px;
+    border-radius: 12px;
+    border: 2px solid var(--verde-floresta);
+}
+
+.formulario-envio input {
+    flex: 1;
+    padding: 12px;
+    background-color: var(--escuro-estilo-cinema);
+    border: 1px solid var(--verde-floresta);
+    border-radius: 8px;
+    color: var(--pergaminho);
+    outline: none;
+    font-size: 1rem;
+}
+
+
+.formulario-envio button {
+    padding: 12px 24px;
+    background-color: var(--verde-floresta);
+    color: var(--pergaminho);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.formulario-envio button:hover {
+    background-color: var(--ouro-bill);
+    color: var(--escuro-estilo-cinema);
+    transform: scale(1.03);
+}
+
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: var(--pergaminho);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}

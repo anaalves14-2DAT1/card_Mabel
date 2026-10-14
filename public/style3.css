@@ -1,0 +1,149 @@
+/* =======================================cadastro======================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Creepster&family=Mystery+Quest&family=Roboto:wght@400;700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+
+:root {
+    --escuro-estilo-cinema: #0b0b0d; 
+    --ouro-bill: #ffcc00;
+    --verde-floresta: #234132;    
+    --fundo-floresta: #1a110b;    
+    --fundo-diario: #1f130f;     
+    --pergaminho: #f7eed6;       
+    --azul-portal: #9c27b0;      
+    --rosado-: #fe5f55;        
+    --vermelho-diario: #e61b00;  
+}
+
+
+body {
+  background-color: var(--escuro-estilo-cinema);
+  background-size: 20px 20px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #f4e8c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
+
+.menu {
+    position: fixed; 
+    top: 0;
+    left: 0;         
+    width: 100%;     
+    padding: 20px;
+    background-color: rgba(11, 17, 14, 0.95);  
+    text-align: center;
+    border-bottom: 2px solid var(--azul-portal);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10; 
+}
+
+.link {
+    text-decoration: none; 
+    font-family: 'Mystery Quest', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin: 0 20px;
+    color: var(--pergaminho);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.link:hover, .link.ativo {
+    color: var(--azul-portal);
+    text-shadow: 0 0 10px var(--azul-portal);
+}
+
+div#resposta, label, input, button {
+  box-sizing: border-box;
+}
+
+label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e2b043; 
+  text-shadow: 1px 1px 2px #000;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 280px;
+  padding: 10px 14px;
+  margin-top: 6px;
+  background-color: #2b1d0f; 
+  border: 2px solid #8c5a2b;
+  border-radius: 4px;
+  color: #f4e8c1;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  background-color: #3d2915;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8c5a2b, #5a3818);
+  color: #f4e8c1;
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #a66c35, #734820);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#resposta {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  min-height: 24px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--pergaminho);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}

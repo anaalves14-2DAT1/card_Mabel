@@ -1,0 +1,352 @@
+
+/* ===================================chat=================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
+:root {
+    --escuro-estilo-cinema: #0b0b0d; 
+    --ouro-bill: #ffcc00;
+    --verde-floresta: #234132;    
+    --fundo-floresta: #1a110b;    
+    --fundo-diario: #1f130f;     
+    --pergaminho: #f7eed6;       
+    --azul-portal: #9c27b0;      
+    --rosado-: #fe5f55;        
+    --vermelho-diario: #e61b00;   
+}
+
+body {
+    background-color: var(--escuro-estilo-cinema);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--pergaminho);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =======================MENU========================== */
+.menu {
+    position: fixed; 
+    top: 0;
+    left: 0;        
+    width: 100%;     
+    padding: 20px 0;
+    background-color: rgba(11, 17, 14, 0.95);  
+    text-align: center;
+    border-bottom: 3px solid var(--ouro-bill);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.link {
+    text-decoration: none; 
+    font-family: 'Mystery Quest';
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin: 0 20px;
+    color: var(--pergaminho);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.link:hover {
+    color: var(--ouro-bill);
+    text-shadow: 0 0 10px var(--ouro-bill), 0 0 20px var(--ouro-bill);
+}
+
+/*========================chat================== */
+.chatContainer {
+    max-width: 550px;
+    width: 90%;
+    margin: 110px auto 20px auto; 
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fundo-floresta); 
+    border-radius: 16px;
+    border: 4px solid var(--ouro-bill); 
+    box-shadow: 0 8px 32px rgba(255, 204, 0, 0.15), 0 0 15px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    padding: 20px; 
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+#boasVindas {
+    font-family:monospace;
+    color: var(--ouro-bill);
+    margin: 0;
+    text-align: center;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#caixaChat {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid var(--fundo-diario);
+}
+
+.msg {
+    max-width: 80%;
+    padding: 12px 16px; 
+    border-radius: 16px;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    word-break: break-word;
+    margin: 0;
+    background-color: var(--fundo-floresta);
+    color: var(--pergaminho);
+    border: 2px solid var(--ouro-bill);
+}
+
+#inputArea {
+    display: flex;
+    flex-direction: row; 
+    padding: 10px;
+    background-color: var(--fundo-diario);
+    gap: 10px;
+    border-radius: 12px;
+    border: 2px solid var(--pergaminho);
+}
+
+#mensagem {
+    flex: 1;
+    padding: 12px;
+    background-color: var(--escuro-estilo-cinema);
+    border: 1px solid var(--pergaminho);
+    border-radius: 8px;
+    color: var(--pergaminho);
+    outline: none;
+    font-size: 1rem;
+}
+
+#mensagem:focus {
+    border-color:goldenrod;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+#btnEnviar {
+    padding: 12px 24px;
+    background-color:burlywood;
+    color: var(--fundo-diario);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#btnEnviar:hover {
+    background-color: var(--ouro-bill);
+    color: var(--escuro-estilo-cinema);
+    transform: scale(1.03);
+}
+
+#btnEnviar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+  
+.container-chat {
+    max-width: 550px;
+    margin: 110px auto 20px auto; 
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fundo-floresta); 
+    border-radius: 16px;
+    border: 4px solid var(--ouro-bill); 
+    box-shadow: 0 8px 32px rgba(255, 204, 0, 0.15);
+    overflow: hidden;
+    padding: 20px; 
+    gap: 20px;
+}
+
+.janela-mensagens {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.mensagem {
+    max-width: 75%;
+    padding: 14px 18px; 
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+}
+
+.mensagem.mabel {
+    background-color: var(--rosado-);
+    color: var(--pergaminho);
+    align-self: flex-start;   
+    border: 2px solid var(--pergaminho);
+}
+
+.mensagem.usuario {
+    background-color: var(--pergaminho);
+    color: var(--pergaminho);
+    align-self: flex-end; 
+    border: 2px solid var(--pergaminho);
+}
+
+.formulario-envio {
+    display: flex;
+    flex-direction: row; 
+    padding: 12px;
+    background-color: var(--fundo-diario);
+    gap: 12px;
+    border-radius: 12px;
+    border: 2px solid var(--pergaminho);
+}
+
+.formulario-envio input {
+    flex: 1;
+    padding: 12px;
+    background-color: var(--escuro-estilo-cinema);
+    border: 1px solid var(--verde-floresta);
+    border-radius: 8px;
+    color: var(--pergaminho);
+    outline: none;
+    font-size: 1rem;
+}
+
+.formulario-envio button {
+    padding: 12px 24px;
+    background-color: var(--verde-floresta);
+    color: var(--pergaminho);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.formulario-envio button:hover {
+    background-color: var(--ouro-bill);
+    color: var(--escuro-estilo-cinema);
+    transform: scale(1.03);
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    color: var(--pergaminho);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+
+/*=====================================LOGIN===============================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #12181b;
+  background-size: 20px 20px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #f4e8c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
+}
+
+div#resposta, label, input, button {
+  box-sizing: border-box;
+}
+
+label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e2b043; 
+  text-shadow: 1px 1px 2px #000;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 280px;
+  padding: 10px 14px;
+  margin-top: 6px;
+  background-color: #2b1d0f; 
+  border: 2px solid #8c5a2b;
+  border-radius: 4px;
+  color: #f4e8c1;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  background-color: #3d2915;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8c5a2b, #5a3818);
+  color: #f4e8c1;
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #a66c35, #734820);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#resposta {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  min-height: 24px;
+}
