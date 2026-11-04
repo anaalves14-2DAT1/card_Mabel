@@ -37,7 +37,7 @@
         async function validarDados() {
             const usuarioEntrada = document.querySelector('#usuario');
             const emailEntrada = document.querySelector('#email');
-            const senhaEntrada = document.querySelector('#senha')
+            const senhaEntrada = document.querySelector('#senha');
             const resposta = document.querySelector('#resposta');
 
             const usuarioDigitado = usuarioEntrada.value;
@@ -50,7 +50,7 @@
                 return;
             }
 
-            resposta.innerText = 'Aguarde 5 segundos, cadastrando no servidor...';
+            resposta.innerText = 'Aguarde, cadastrando no servidor...';
             resposta.style.color = 'yellow';
 
             try {
@@ -72,23 +72,16 @@
                     return;
                 }
 
-                if (dados.usuario && dados.token) {
-                    localStorage.setItem('usuario', dados.usuario);
-                    localStorage.setItem('token', dados.token);
-                } else {
-                    localStorage.setItem('usuario', usuarioDigitado);
-                    if (dados.token) localStorage.setItem('token', dados.token);
-                }
-
-                resposta.innerText = `${dados.mensagem}: Entrando no chat...`;
+                resposta.innerText = `${dados.mensagem}: Redirecionando para o login...`;
                 resposta.style.color = 'green';
 
                 usuarioEntrada.value = '';
                 emailEntrada.value = '';
                 senhaEntrada.value = '';
 
+                // Redireciona para o login após concluir o cadastro
                 setTimeout(() => {
-                    window.location.href = 'chat.html';
+                    window.location.href = 'login.html';
                 }, 1000);
 
             } catch (erro) {

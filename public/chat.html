@@ -16,7 +16,20 @@
         <a class="link" id="linkCadastro" href="cadastro.html">Cadastro</a>
     </nav>
 
-    <main class="chat-container" id="areaChat">
+    <!-- Tela de Aviso para Usuários não autenticados -->
+    <div id="telaAviso" class="overlay-aviso" style="display: none;">
+        <div class="card-aviso">
+            <h2>Acesso Restrito</h2>
+            <p>Para conversar com a Mabel, você precisa criar uma conta ou fazer o login!</p>
+            <div class="botoes-aviso">
+                <a href="cadastro.html" class="btn-aviso btn-aviso-cadastro">Criar Conta</a>
+                <a href="login.html" class="btn-aviso btn-aviso-login">Fazer Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Área Principal do Chat -->
+    <main class="chat-container" id="areaChat" style="display: none;">
         <h2 id="boasVindas">Olá, seja bem-vinda(o) ao chat da Mabel</h2>
         <div id="caixaChat"></div>
 
@@ -31,6 +44,19 @@
     </footer>
 
     <script>
+        const token = localStorage.getItem('token');
+        const telaAviso = document.querySelector('#telaAviso');
+        const areaChat = document.querySelector('#areaChat');
+
+        // Se não tiver token, exibe a tela de aviso e oculta o chat
+        if (!token) {
+            telaAviso.style.display = 'flex';
+            areaChat.style.display = 'none';
+        } else {
+            telaAviso.style.display = 'none';
+            areaChat.style.display = 'flex';
+        }
+
         const usuarioLogado = localStorage.getItem('usuario') || 'Usuário';
 
         document.querySelector('#boasVindas').textContent = `Olá ${usuarioLogado}, seja bem-vinda(o) ao chat da Mabel`;

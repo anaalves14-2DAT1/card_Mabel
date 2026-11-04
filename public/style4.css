@@ -57,6 +57,84 @@ body {
     text-shadow: 0 0 10px var(--ouro-bill), 0 0 20px var(--ouro-bill);
 }
 
+/* ======================= TELA DE AVISO (MODAL / OVERLAY) ================== */
+.overlay-aviso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 11, 13, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.card-aviso {
+    background-color: var(--fundo-floresta);
+    border: 3px solid var(--ouro-bill);
+    border-radius: 16px;
+    padding: 30px 40px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
+}
+
+.card-aviso h2 {
+    font-family: 'Mystery Quest', cursive;
+    color: var(--ouro-bill);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card-aviso p {
+    font-size: 1.1rem;
+    color: var(--pergaminho);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.botoes-aviso {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-aviso {
+    padding: 12px 24px;
+    font-family: 'Mystery Quest', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-aviso-cadastro {
+    background-color: var(--ouro-bill);
+    color: var(--fundo-diario);
+}
+
+.btn-aviso-cadastro:hover {
+    background-color: #ffe066;
+    transform: scale(1.05);
+}
+
+.btn-aviso-login {
+    background-color: var(--rosado);
+    color: var(--pergaminho);
+}
+
+.btn-aviso-login:hover {
+    background-color: #ff7870;
+    transform: scale(1.05);
+}
+
 /* ======================= CHAT ================== */
 .chat-container {
     max-width: 550px;
@@ -218,5 +296,9 @@ footer {
     #btnEnviar {
         padding: 12px 14px;
         font-size: 0.9rem;
+    }
+
+    .botoes-aviso {
+        flex-direction: column;
     }
 }

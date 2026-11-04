@@ -29,8 +29,8 @@
     <div id="mensagemLogin"></div>
 
     <script>
-        const btnLogin = document.querySelector('#btnLogin')
-        const mensagemLogin = document.querySelector('#mensagemLogin')
+        const btnLogin = document.querySelector('#btnLogin');
+        const mensagemLogin = document.querySelector('#mensagemLogin');
 
         btnLogin.addEventListener('click', async () => {
             const emailEntrada = document.querySelector('#loginEmail');
@@ -63,12 +63,14 @@
                     return;
                 }
 
+                // Salva token e usuário
                 localStorage.setItem('usuario', dados.usuario);
                 localStorage.setItem('token', dados.token);
 
-                mensagemLogin.innerText = `${dados.mensagem}: ${dados.usuario} entrando no chat`;
+                mensagemLogin.innerText = `${dados.mensagem}: ${dados.usuario} entrando no chat...`;
                 mensagemLogin.style.color = 'green';
 
+                // Redireciona para o chat após o login
                 setTimeout(() => {
                     window.location.href = 'chat.html';
                 }, 1000);
@@ -78,7 +80,7 @@
                 mensagemLogin.innerText = 'Erro ao conectar com o servidor!!';
                 mensagemLogin.style.color = 'red';
             }
-        })
+        });
     </script>
     
     <footer> &copy; Desenvolvido por Ana Julia - 2026 Curitiba </footer>
