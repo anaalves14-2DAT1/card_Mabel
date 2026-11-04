@@ -4,94 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chatMabel</title>
-    <link rel="stylesheet" href="style4.css">
-    
+    <title>Chat da Mabel</title>
+    <link rel="stylesheet" href="./style4.css">
 </head>
 
 <body>
-     <nav class="menu">
-        <a class="link" href="index.html">home</a>
-        <a class="link" href="galeria.html">galeria</a>
-        <a class="link" href="chat.html">chat Mabel</a>
-        <a class="link" href="cadastro.html">cadastro</a>
-        
+    <nav class="menu">
+        <a class="link" href="index.html">Home</a>
+        <a class="link" href="galeria.html">Galeria</a>
+        <a class="link" href="chat.html">Chat</a>
+        <a class="link" id="linkCadastro" href="cadastro.html">Cadastro</a>
     </nav>
 
-
-    <div class="chatContainer">
-        <h2 id="boasVindas"> Seja bem vindo ao chat</h2>
+    <main class="chat-container" id="areaChat">
+        <h2 id="boasVindas">Olá, seja bem-vinda(o) ao chat da Mabel</h2>
         <div id="caixaChat"></div>
 
         <div id="inputArea">
-            <input type="text" id="mensagem" placeholder="Digite sua menssagem">
+            <input type="text" id="mensagem" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem">
             <button id="btnEnviar">Enviar</button>
-
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <p>© Site desenvolvido por Ana Julia / 2026 Curitiba</p>
+    </footer>
 
     <script>
-        const usuarioLogado = 'Maria'
+        const usuarioLogado = localStorage.getItem('usuario') || 'Usuário';
 
-        document.querySelector('#boasVindas').textContent = `Olá ${usuarioLogado} seja bem vindo(a)`
-        const caixaChat = document.querySelector('#caixaChat')
-        const inputMensagem = document.querySelector('#mensagem')
-        const btnEnviar = document.querySelector('#btnEnviar')
+        document.querySelector('#boasVindas').textContent = `Olá ${usuarioLogado}, seja bem-vinda(o) ao chat da Mabel`;
 
-        const historicoConversa = []
+        const caixaChat = document.querySelector('#caixaChat');
+        const inputMensagem = document.querySelector('#mensagem');
+        const btnEnviar = document.querySelector('#btnEnviar');
 
+        const historicoConversa = [];
 
         function mensagemTela(autor, texto) {
-
-            const textoFinal = document.createElement('p')
-            textoFinal.className = 'msg'
-            textoFinal.textContent = `${autor}, ${texto}`
-            caixaChat.appendChild(textoFinal)
+            const textoFinal = document.createElement('p');
+            textoFinal.className = 'msg';
+            if (autor === 'Mabel') {
+                textoFinal.classList.add('msg-mabel');
+            } else if (autor === 'system') {
+                textoFinal.classList.add('msg-system');
+            } else {
+                textoFinal.classList.add('msg-user');
+            }
+            textoFinal.textContent = `${autor}: ${texto}`;
+            caixaChat.appendChild(textoFinal);
+            caixaChat.scrollTop = caixaChat.scrollHeight;
         }
 
         btnEnviar.addEventListener('click', async () => {
-            const textoMensagem = inputMensagem.value.trim()
+            const textoMensagem = inputMensagem.value.trim();
+            if (!textoMensagem) return;
 
-            if (!textoMensagem) return
+            mensagemTela(usuarioLogado, textoMensagem);
+            historicoConversa.push({ role: 'user', content: textoMensagem });
 
-            mensagemTela(usuarioLogado, textoMensagem)
-            historicoConversa.push({ role: "user", content: textoMensagem })
-
-            inputMensagem.value = ''
-            btnEnviar.disabled = true
+            inputMensagem.value = '';
+            btnEnviar.disabled = true;
 
             try {
                 const respostaServidor = await fetch('/chat', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({ historico: historicoConversa })
+                });
 
-                })
-
-                const dados = await respostaServidor.json()
+                const dados = await respostaServidor.json();
 
                 if (!respostaServidor.ok) {
-                    mensagemTela('system', dados.erro)
-                    return
+                    mensagemTela('system', dados.erro || 'Erro no servidor');
+                    return;
                 }
-                mensagemTela('Mabel', dados.resposta)
 
+                mensagemTela('Mabel', dados.resposta);
+                historicoConversa.push({ role: 'assistant', content: dados.resposta });
+            } catch (erro) {
+                console.error('Erro ao enviar mensagem:', erro);
+                mensagemTela('system', 'Erro ao conectar com o servidor');
+            } finally {
+                btnEnviar.disabled = false;
             }
-            catch (erro) {
-                mensagemTela('Sistema', 'Erro ao conectar')
+        });
+
+        inputMensagem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !btnEnviar.disabled) {
+                btnEnviar.click();
             }
-
-            finally {
-                btnEnviar.disabled = false
-            }
-        })
-
-
-
+        });
     </script>
-
-    <footer> &copy; Desenvolvido por Ana Julia - 2026 Curitiba </footer>
-
 </body>
 
 </html>

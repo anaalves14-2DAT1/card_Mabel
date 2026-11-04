@@ -29,7 +29,6 @@
     <label for="senha">senha</label><br>
     <input type="password" id="senha" placeholder="A senha deve ter 6 caracteres"><br><br>
 
-
     <button onclick="validarDados()">Enviar</button>
 
     <div id="resposta"></div>
@@ -73,12 +72,24 @@
                     return;
                 }
 
-                resposta.innerText = `${dados.mensagem}: ${dados.PERFIL}`;
+                if (dados.usuario && dados.token) {
+                    localStorage.setItem('usuario', dados.usuario);
+                    localStorage.setItem('token', dados.token);
+                } else {
+                    localStorage.setItem('usuario', usuarioDigitado);
+                    if (dados.token) localStorage.setItem('token', dados.token);
+                }
+
+                resposta.innerText = `${dados.mensagem}: Entrando no chat...`;
                 resposta.style.color = 'green';
 
                 usuarioEntrada.value = '';
                 emailEntrada.value = '';
                 senhaEntrada.value = '';
+
+                setTimeout(() => {
+                    window.location.href = 'chat.html';
+                }, 1000);
 
             } catch (erro) {
                 console.error('Erro na requisição:', erro);

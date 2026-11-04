@@ -1,14 +1,11 @@
 /* =======================================cadastro======================================================*/
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Creepster&family=Mystery+Quest&family=Roboto:wght@400;700&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
-
 
 :root {
     --escuro-estilo-cinema: #0b0b0d; 
@@ -22,11 +19,10 @@
     --vermelho-diario: #e61b00;  
 }
 
-
 body {
   background-color: var(--escuro-estilo-cinema);
   background-size: 20px 20px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Mystery Quest', cursive;
   color: #f4e8c1;
   display: flex;
   justify-content: center;
@@ -34,31 +30,33 @@ body {
   min-height: 100vh;
   margin: 0;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 120px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-
 
 .menu {
     position: fixed; 
     top: 0;
     left: 0;         
     width: 100%;     
-    padding: 20px;
+    padding: 15px 10px;
     background-color: rgba(11, 17, 14, 0.95);  
     text-align: center;
     border-bottom: 2px solid var(--azul-portal);
     display: flex;
     justify-content: center;
-    gap: 20px;
-    z-index: 10; 
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    z-index: 1000; 
 }
 
 .link {
     text-decoration: none; 
     font-family: 'Mystery Quest', cursive;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    margin: 0 20px;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
     color: var(--pergaminho);
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
@@ -81,13 +79,14 @@ label {
   text-shadow: 1px 1px 2px #000;
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   padding: 10px 14px;
   margin-top: 6px;
+  margin-bottom: 15px;
   background-color: #2b1d0f; 
   border: 2px solid #8c5a2b;
   border-radius: 4px;
@@ -146,4 +145,20 @@ footer {
     color: var(--pergaminho);
     font-size: 0.9rem;
     margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    .menu {
+        padding: 10px 5px;
+        gap: 10px;
+    }
+
+    .link {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+    }
+
+    body {
+        padding-top: 140px;
+    }
 }

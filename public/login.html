@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style4.css">
+    <link rel="stylesheet" href="style5.css">
 </head>
 
 <body>
-     <nav class="menu">
+    <nav class="menu">
         <a class="link" href="index.html">home</a>
         <a class="link" href="galeria.html">galeria</a>
         <a class="link" href="chat.html">chat Mabel</a>
@@ -29,12 +29,10 @@
     <div id="mensagemLogin"></div>
 
     <script>
-
         const btnLogin = document.querySelector('#btnLogin')
-        const mensagemlogin = document.querySelector('#mensagemLogin')
+        const mensagemLogin = document.querySelector('#mensagemLogin')
 
         btnLogin.addEventListener('click', async () => {
-
             const emailEntrada = document.querySelector('#loginEmail');
             const senhaEntrada = document.querySelector('#loginSenha');
 
@@ -50,7 +48,7 @@
             try {
                 const respostaBe = await fetch('/login', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
                         email: email,
                         senha: senha
@@ -65,7 +63,8 @@
                     return;
                 }
 
-                localStorage,setItem('usuarioLogado', dados.usuario);
+                localStorage.setItem('usuario', dados.usuario);
+                localStorage.setItem('token', dados.token);
 
                 mensagemLogin.innerText = `${dados.mensagem}: ${dados.usuario} entrando no chat`;
                 mensagemLogin.style.color = 'green';
@@ -74,18 +73,16 @@
                     window.location.href = 'chat.html';
                 }, 1000);
 
-                //emailEntrada.value = '';
-                //senhaEntrada.value = '';
-
             } catch (erro) {
                 console.error('Erro na requisição:', erro);
                 mensagemLogin.innerText = 'Erro ao conectar com o servidor!!';
                 mensagemLogin.style.color = 'red';
             }
         })
-
-
     </script>
+    
+    <footer> &copy; Desenvolvido por Ana Julia - 2026 Curitiba </footer>
+
 </body>
 
 </html>
