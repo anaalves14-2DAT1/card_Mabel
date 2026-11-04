@@ -67,19 +67,25 @@
                 const dados = await respostaBe.json();
 
                 if (!respostaBe.ok) {
-                    resposta.innerText = `${dados.erro}`;
+                    resposta.innerText = `${dados.erro || 'Erro ao realizar cadastro'}`;
                     resposta.style.color = 'red';
                     return;
                 }
 
-                resposta.innerText = `${dados.mensagem}: Redirecionando para o login...`;
+                const nomeSalvar = dados.usuario || dados.nome || usuarioDigitado;
+                localStorage.setItem('usuario', nomeSalvar);
+                
+                if (dados.token) {
+                    localStorage.setItem('token', dados.token);
+                }
+
+                resposta.innerText = 'Cadastro realizado com sucesso! Redirecionando para o login...';
                 resposta.style.color = 'green';
 
                 usuarioEntrada.value = '';
                 emailEntrada.value = '';
                 senhaEntrada.value = '';
 
-                // Redireciona para o login após concluir o cadastro
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 1000);

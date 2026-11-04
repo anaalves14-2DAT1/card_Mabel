@@ -58,19 +58,19 @@
                 const dados = await respostaBe.json();
 
                 if (!respostaBe.ok) {
-                    mensagemLogin.innerText = `${dados.erro}`;
+                    mensagemLogin.innerText = `${dados.erro || 'Erro ao efetuar login'}`;
                     mensagemLogin.style.color = 'red';
                     return;
                 }
 
-                // Salva token e usuário
-                localStorage.setItem('usuario', dados.usuario);
-                localStorage.setItem('token', dados.token);
+                const nomeUsuario = dados.usuario || dados.nome || dados.name || email.split('@')[0];
 
-                mensagemLogin.innerText = `${dados.mensagem}: ${dados.usuario} entrando no chat...`;
+                localStorage.setItem('usuario', nomeUsuario);
+                localStorage.setItem('token', dados.token || 'token_valido');
+
+                mensagemLogin.innerText = `${dados.mensagem || 'Sucesso'}: ${nomeUsuario} entrando no chat...`;
                 mensagemLogin.style.color = 'green';
 
-                // Redireciona para o chat após o login
                 setTimeout(() => {
                     window.location.href = 'chat.html';
                 }, 1000);
